@@ -14,7 +14,7 @@ class EmployeeStatus(Enum):
     QUIT = 5
 
 
-class Person(object):
+class Person:
     def __init__(self, is_new_hire = True):
         self.person_id = uuid.uuid4()
         self.performance = 0
@@ -41,7 +41,7 @@ class Person(object):
 
         
         
-class Firm(object):
+class Firm:
     # constructor: define all the attributes and what need to do when creating an instance
     def __init__(self, market):
         self.market = market
@@ -91,16 +91,17 @@ class Firm(object):
         self.persons = new_persons
    
         
-class Sim(object):
+class Sim:
     def __init__(self, n_simulations=100):
         self.n_simulations = n_simulations 
-        self.firm = Firm(self) #firm object inherits all attributes of Firm class
+        self.firm = Firm() #firm object inherits all attributes of Firm class
         self.persons = {0: []} #persons list of every simulation iteration, it starts at element zero, then appends array/list of persons for every iteration
         self.current_simulation = 0 #we are starting at zero simulation
 
+
     def get_person_from_market(self, is_new_hire):
         person = Person(is_new_hire)
-        self.persons[self.current_simulation].append(person) #for the persons population marked by [index] of current simulation, append this new person
+        # self.persons[self.current_simulation].append(person) #for the persons population marked by [index] of current simulation, append this new person
         return person(self.firm, is_new_hire)
 
     def step(self):
